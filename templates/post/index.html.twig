@@ -4,7 +4,9 @@
 
 {% block body %}
     <div class="container">
-        <h1>Post index</h1>
+        <h1>Liste des anecdotes</h1>
+
+        <a href="{{ path('post_new') }}" class="btn btn-primary mb-3">Créer une nouvelle anecdote</a>
 
         <table class="table">
             <thead>
@@ -24,18 +26,16 @@
                     <td>{{ post.content }}</td>
                     <td>{{ post.author.email }}</td>
                     <td>
-                        <a href="{{ path('post_show', {'id': post.id}) }}">show</a>
-                        <a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+                        <a href="{{ path('post_show', {'id': post.id}) }}" class="btn btn-primary">Voir</a>
+                        <a href="{{ path('post_edit', {'id': post.id}) }}" class="btn btn-warning">Modifier</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="4">no records found</td>
+                    <td colspan="4">Aucune anecdote</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
-
-        <a href="{{ path('post_new') }}">Create new</a>
     </div>
 {% endblock %}

@@ -3,17 +3,24 @@
 namespace App\Form;
 
 use App\Entity\Post;
-use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PostType extends AbstractType
+class PostType extends ApplicationType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('content')
+            ->add('title', TextType::class, $this->getConfiguration("Titre", "Tapez un super titre !"))
+            ->add('content', TextareaType::class, [
+                'label' => 'Description',
+                'attr' => [
+                    'placeholder' => 'Description détaillé',
+                    'rows' => 5
+                ]]
+            )
         ;
     }
 

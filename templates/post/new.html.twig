@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Post{% endblock %}
+{% block title %} | Nouvelle anecdote{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h1>Create new Post</h1>
+        <h1>Créer une nouvelle anecdote</h1>
 
         {{ include('post/_form.html.twig') }}
 
-        <a href="{{ path('post_index') }}">back to list</a>
+        <a href="{{ path('post_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
     </div>
 {% endblock %}
