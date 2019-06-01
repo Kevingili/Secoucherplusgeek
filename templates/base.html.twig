@@ -13,6 +13,8 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/starter-template.css') }}" rel="stylesheet">
+
+    {% block stylecss %}{% endblock %}
 </head>
 
 <body>
@@ -63,10 +65,12 @@
     </nav>
 
     {% block body %}{% endblock %}
-    {% block javascripts %}{% endblock %}
 
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    {% block javascripts %}{% endblock %}
+
+
 </body>
 </html>

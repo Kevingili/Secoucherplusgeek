@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Post
      * @ORM\JoinColumn(nullable=true)
      */
     private $author;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Category", mappedBy="posts")
+     */
+    private $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -70,6 +82,43 @@ class Post
     {
         $this->author = $author;
 
+        return $this;
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): self
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories[] = $category;
+            $category->addPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): self
+    {
+        if ($this->categories->contains($category)) {
+            $this->categories->removeElement($category);
+            $category->removePost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAllCategoies(): self
+    {
+        foreach ($this->getCategories() as $category){
+            $this->categories->removeElement($category);
+            $category->removePost($this);
+        }
         return $this;
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Category;
 use App\Entity\Post;
 use App\Form\PostType;
 use App\Repository\PostRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,17 +30,29 @@ class PostController extends AbstractController
     /**
      * @Route("/new", name="post_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, ObjectManager $manager): Response
     {
         $post = new Post();
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
+        //dd($post);
+        //die();
+
         if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($post->getCategories() as $category){
+                $category->addPost($post);
+                $manager->persist($category);
+            }
+
             $post->setAuthor($this->getUser());
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($post);
-            $entityManager->flush();
+            $manager->persist($post);
+
+            //$entityManager = $this->getDoctrine()->getManager();
+            //$entityManager->persist($post);
+            $manager->flush();
 
             return $this->redirectToRoute('post_index');
         }
@@ -62,13 +76,28 @@ class PostController extends AbstractController
     /**
      * @Route("/{id}/edit", name="post_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Post $post): Response
+    public function edit(Request $request, Post $post, ObjectManager $manager): Response
     {
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+
+            //Supprimer toutes les categories de ce post
+            $repository = $this->getDoctrine()->getRepository(Category::class);
+            $categories = $repository->findByPostId($post->getId());
+            foreach ($categories as $category){
+                $category->removePost($post);
+            }
+
+            foreach ($post->getCategories() as $category){
+                $category->addPost($post);
+                $manager->persist($category);
+            }
+
+            $manager->persist($post);
+            $manager->flush();
 
             return $this->redirectToRoute('post_index', [
                 'id' => $post->getId(),

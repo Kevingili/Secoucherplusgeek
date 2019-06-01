@@ -20,6 +20,18 @@
                 <th>Content</th>
                 <td>{{ post.content }}</td>
             </tr>
+            <tr>
+                <th>Categories</th>
+                <td>
+                    {% if post.categories.count > 0 %}
+                        {% for category in post.categories %}
+                            <span class="badge badge-pill badge-dark">{{ category.name }}</span>
+                        {% endfor %}
+                    {% else %}
+                        <span class="badge badge-pill badge-dark">Aucune</span>
+                    {% endif %}
+                </td>
+            </tr>
             </tbody>
         </table>
 

@@ -2,6 +2,10 @@
 
 {% block title %}Edit Post{% endblock %}
 
+{% block stylecss %}
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <h1>Edit Post</h1>
@@ -12,4 +16,13 @@
 
         {{ include('post/_delete_form.html.twig') }}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
 {% endblock %}
