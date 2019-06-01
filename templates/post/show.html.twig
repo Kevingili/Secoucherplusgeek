@@ -21,6 +21,10 @@
                 <td>{{ post.content }}</td>
             </tr>
             <tr>
+                <th>Author</th>
+                <td>{{ post.author.email }}</td>
+            </tr>
+            <tr>
                 <th>Categories</th>
                 <td>
                     {% if post.categories.count > 0 %}
