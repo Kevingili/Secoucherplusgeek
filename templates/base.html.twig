@@ -32,10 +32,7 @@
                 </li>
                 {% if app.user %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('post_index') }}">Posts</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('category_index') }}">Categories</a>
+                        <a class="nav-link" href="{{ path('front_post_index') }}">Anecdotes</a>
                     </li>
                 {% endif %}
             </ul>
@@ -46,9 +43,9 @@
                             {{ app.user.email }}
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
-                            <a href="#" class="dropdown-item">Blabla</a>
+                            <a href="{{ path('admin') }}" class="dropdown-item">Administration</a>
                             <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">Bloblo</a>
+                            <a href="#" class="dropdown-item">Mon profil</a>
                             <a href="{{ path('logout') }}" class="dropdown-item">Deconnexion</a>
                         </div>
 

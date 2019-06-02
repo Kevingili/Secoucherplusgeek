@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} | Anecdotes{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Liste des anecdotes</h1>
+
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-4 mb-3 mt-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ post.author.email }}</h6>
+                            <p class="card-text">{{ post.content|slice(0, 30) }}...</p>
+                            <a href="#" class="card-link">J'aime</a>
+                            <a href="#" class="card-link">Je n'aime pas</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="pagination">
+            {{ knp_pagination_render(posts) }}
+        </div>
+    </div>
+{% endblock %}

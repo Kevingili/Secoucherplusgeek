@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'back/base.html.twig' %}
 
 {% block title %}Post{% endblock %}
 
@@ -43,7 +43,7 @@
 
         <a href="{{ path('post_edit', {'id': post.id}) }}" class="btn btn-warning">Modifier</a>
 
-        {{ include('post/_delete_form.html.twig') }}
+        {{ include('back/post/_delete_form.html.twig') }}
 
     </div>
 {% endblock %}
