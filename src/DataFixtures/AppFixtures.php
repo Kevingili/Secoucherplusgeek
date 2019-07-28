@@ -22,6 +22,16 @@ class AppFixtures extends Fixture
         $user->setEmail("toto@toto.fr");
         $user->setPassword($this->encoder->encodePassword($user, 'password'));
         $manager->persist($user);
+
+        $admin = new User();
+        $admin->setEmail("admin@admin.fr");
+        $admin->setPassword($this->encoder->encodePassword($user, 'admin'));
+        $admin->setRoles(['ROLE_ADMIN']);
+
+        $manager->persist($admin);
+
         $manager->flush();
+
+
     }
 }
