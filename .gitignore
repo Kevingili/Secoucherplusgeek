@@ -20,3 +20,4 @@
 .idea/*
 .env
 /src/Migrations/*
+.DS_Store
