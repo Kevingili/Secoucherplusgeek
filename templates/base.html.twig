@@ -10,6 +10,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fontawesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/regular.min.css') }}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/starter-template.css') }}" rel="stylesheet">
@@ -28,11 +30,11 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="{{ path('home') }}"> <i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
                 </li>
                 {% if app.user %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('front_post_index') }}">Anecdotes</a>
+                        <a class="nav-link" href="{{ path('front_post_index') }}"><i class="fas fa-file-alt"></i> Anecdotes</a>
                     </li>
                 {% endif %}
             </ul>
@@ -69,6 +71,9 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+
+    <script src="{{ asset('js/fontawesome.min.js') }}"></script>
+    <script src="{{ asset('js/regular.min.js') }}"></script>
     {% block javascripts %}{% endblock %}
 
 

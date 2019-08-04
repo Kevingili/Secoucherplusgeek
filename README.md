@@ -1,6 +1,6 @@
 # Secoucherplusgeek
 
-![Secoucherplusgeek Logo](public/logo/goodnight.png)
+![Secoucherplusgeek Logo](public/logo/logo.png)
 
 Secoucherplusgeek (Go to bed more geek) is a Symfony 4 application to read and share anecdotes about IT.
 
