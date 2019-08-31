@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} | Nouvelle anecdote{% endblock %}
+
+{% block stylecss %}
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Créer une nouvelle anecdote</h1>
+
+        {{ include('back/post/_form.html.twig') }}
+
+        <a href="{{ path('post_index') }}" class="btn btn-secondary mt-3">Retour à la liste</a>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/select2.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+    </script>
+{% endblock %}

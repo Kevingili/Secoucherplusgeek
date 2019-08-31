@@ -36,6 +36,18 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('front_post_index') }}"><i class="fas fa-file-alt"></i> Anecdotes</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('front_post_index') }}"><i class="fas fa-trophy"></i> Le Top</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('front_post_index') }}"><i class="fas fa-random"></i> Au hasard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('front_post_index') }}"><i class="fas fa-star"></i> Favoris</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('front_post_index') }}"><i class="fas fa-pen"></i> Soumettre</a>
+                    </li>
                 {% endif %}
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -47,6 +59,7 @@
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdownLink">
                             <a href="{{ path('admin') }}" class="dropdown-item">Administration</a>
                             <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">Soumettre</a>
                             <a href="#" class="dropdown-item">Mon profil</a>
                             <a href="{{ path('logout') }}" class="dropdown-item">Deconnexion</a>
                         </div>

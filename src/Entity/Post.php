@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Post
 {
@@ -39,9 +40,24 @@ class Post
      */
     private $categories;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $createdAt;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+    }
+
+    /**
+     * Permet d'initialiser la date !
+     * @ORM\PrePersist
+     */
+    public function initializeDate(){
+        if(empty($this->createdAt)){
+            $this->createdAt = new \DateTime();
+        }
     }
 
     public function getId(): ?int
@@ -119,6 +135,18 @@ class Post
             $this->categories->removeElement($category);
             $category->removePost($this);
         }
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(?\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
         return $this;
     }
 }
